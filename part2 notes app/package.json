@@ -1,0 +1,12 @@
+{
+  "name": "notes-api",
+  "version": "1.0.0",
+  "description": "Simple notes API",
+  "main": "notes.js",
+  "scripts": {
+    "start": "node notes.js"
+  },
+  "dependencies": {
+	"express":"^4.16.4"
+  }
+}
