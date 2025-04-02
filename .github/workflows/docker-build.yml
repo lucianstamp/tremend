@@ -29,10 +29,16 @@ jobs:
       - name: Build and Push Calculator App Image
         run: |
           docker build -t luciangabriel140/internship-tremend:calculatorapp-${{ env.COMMIT_HASH }} \
-          -f "tremend/part2\ calculator\ app/Dockerfile" "tremend/part2\ calculator\ app/"
+          -f "tremend/part2_calculator_app/Dockerfile" "tremend/part2_calculator_app/"
           
           docker push luciangabriel140/internship-tremend:calculatorapp-${{ env.COMMIT_HASH }}
 
+      - name: Build and Push Notes App Image
+        run: |
+          docker build -t luciangabriel140/internship-tremend:notesapp-${{ env.COMMIT_HASH }} \
+          -f "tremend/part2_calculator_app/Dockerfile" "tremend/part2_calculator_app/"
+          
+          docker push luciangabriel140/internship-tremend:notesapp-${{ env.COMMIT_HASH }}
 
       - name: Cleanup local Docker images
         run: docker system prune -af
