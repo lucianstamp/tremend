@@ -1,0 +1,13 @@
+Created Dockerfile
+Added in package.json at dependencies : "express":"4.16.4"
+Modified notes.js : 
+const PORT = 8080;
+app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+});
+
+1.docker build -t luciangabriel40/internship-tremend:notesapp .
+2.docker run -p 8080:8080 luciangabriel40/internship-tremend:notesapp
+3. go to http://localhost:8080/
+
+Repository: https://hub.docker.com/repository/docker/luciangabriel40/internship-tremend/tags
