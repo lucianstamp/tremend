@@ -1,4 +1,4 @@
 Created Dockerfile
 Added flask in requirements.txt as it was needed
-docker build -t calculatorapp .
-docker run -p 8080:8080 calculatorapp
+docker build -t luciangabriel40/internship-tremend:calculatorapp .
+docker run -p 8080:8080 luciangabriel40/internship-tremend:calculatorapp
