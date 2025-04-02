@@ -28,16 +28,14 @@ jobs:
 
       - name: Build and Push Calculator App Image
         run: |
-          docker build -t luciangabriel140/internship-tremend:calculatorapp
-          -f "tremend/part2 calculator app/Dockerfile" "tremend/part2 calculator app/"
+          docker build -t luciangabriel140/internship-tremend:calculatorapp .
           
           docker push luciangabriel140/internship-tremend:calculatorapp
 
       - name: Build and Push Notes App Image
         run: |
-          docker build -t luciangabriel140/internship-tremend:notesapp
-          -f "tremend/part2 calculator app/Dockerfile" "tremend/part2 calculator app/"
-          
+          docker build -t luciangabriel140/internship-tremend:notesapp .
+
           docker push luciangabriel140/internship-tremend:notesapp
 
       - name: Cleanup local Docker images
