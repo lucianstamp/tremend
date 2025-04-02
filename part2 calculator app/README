@@ -1,5 +1,6 @@
 Created Dockerfile
 Added flask in requirements.txt as it was needed
 Modified the running port app.run(host='0.0.0.0', port=8080)
-docker build -t luciangabriel40/internship-tremend:calculatorapp .
-docker run -p 8080:8080 luciangabriel40/internship-tremend:calculatorapp
+1.docker build -t luciangabriel40/internship-tremend:calculatorapp .
+2.docker run  luciangabriel40/internship-tremend:calculatorapp
+3.go to web : http://localhost:8080/
