@@ -1,0 +1,21 @@
+docker pull postgres
+docker run --name postgresqlcontainer -e POSTGRES_USER=ituser -e POSTGRES_PASSWORD=parola -e POSTGRES_DB=company_db -p 5432:5432 -d postgres
+
+To create a connection to postgresql
+docker exec -it postgresqlcontainer psql -U ituser -d company_db
+
+CREATE DATABASE company_db;
+
+\l -> to list all databases created
+
+\c company_db -> connection to company_db
+
+Copy the populatedb.sql to the container 
+docker cp populatedb.sql postgresqlcontainer:/tmp/populatedb.sql
+
+Populate the db
+docker exec -it postgresqlcontainer psql -U ituser -d company_db -f /tmp/populatedb.sql
+
+
+
+
