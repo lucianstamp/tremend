@@ -1,4 +1,5 @@
 Created Dockerfile
 Added in package.json at dependencies : "express":"4.16.4"
-docker build -t notesapp .
-docker run -p 8080:8080 notesapp
+docker build -t luciangabriel40/internship-tremend:notesapp
+docker run -p 8080:8080 luciangabriel40/internship-tremend:notesapp
+https://hub.docker.com/repository/docker/luciangabriel40/internship-tremend/tags
