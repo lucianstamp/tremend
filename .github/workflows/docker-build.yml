@@ -23,6 +23,10 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+          
+      - name: Debug - List Repository Files
+        run: ls -R
+
 
       - name: Get Commit Hash
         id: vars
@@ -31,16 +35,12 @@ jobs:
       - name: Build and Push Calculator App Image
         run: |
           docker build -t luciangabriel140/internship-tremend:calculatorapp-${{ env.COMMIT_HASH }} \
-          -f "tremend/part2_calculator_app/Dockerfile" "tremend/part2_calculator_app/"
+          -f "part2_calculator_app/Dockerfile" "part2_calculator_app/"
           
-          docker push luciangabriel140/internship-tremend:calculatorapp-${{ env.COMMIT_HASH }}
+          docker push luciangabriel140/internship-tremend:calculatorapp-${{ env.COMMIT_HASH }}"
 
-      - name: Build and Push Notes App Image
-        run: |
-          docker build -t luciangabriel140/internship-tremend:notesapp-${{ env.COMMIT_HASH }} \
-          -f "tremend/part2_calculator_app/Dockerfile" "tremend/part2_calculator_app/"
-          
-          docker push luciangabriel140/internship-tremend:notesapp-${{ env.COMMIT_HASH }}
+
+    
 
       - name: Cleanup local Docker images
         run: docker system prune -af
