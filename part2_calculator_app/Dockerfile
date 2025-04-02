@@ -5,7 +5,8 @@ COPY requirements.txt /app
 RUN python -m venv venv && \
     venv/bin/pip install --no-cache-dir -r requirements.txt
 EXPOSE 8080
-CMD venv/bin/python ./calculator.py
+CMD ["venv/bin/python", "calculator.py"]
+
 
 
 
