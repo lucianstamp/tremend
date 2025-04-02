@@ -1,0 +1,131 @@
+I. Linux Essentials
+
+•Ubuntu container : docker run -it ubuntu
+
+install net tools : sudo apt-get install net-tools
+install host : sudo apt-get install host
+
+#Lookup the Public IP of cloudflare.com
+=> host cloudflare.com
+cloudflare.com has address 104.16.133.229
+cloudflare.com has address 104.16.132.229
+cloudflare.com has IPv6 address 2606:4700::6810:84e5
+cloudflare.com has IPv6 address 2606:4700::6810:85e5
+cloudflare.com mail is handled by 5 mailstream-canary.mxrecord.io.
+cloudflare.com mail is handled by 10 mailstream-west.mxrecord.io.
+cloudflare.com mail is handled by 10 mailstream-east.mxrecord.io.
+cloudflare.com mail is handled by 20 mailstream-central.mxrecord.mx.
+
+•Map IP address 8.8.8.8 to hostname google-dns
+
+cd etc
+sudo apt-get install nano
+nano hosts
+8.8.8.8 google-dns
+ping google-dns
+
+
+•Check if the DNS Port is Open for google-dns
+
+apt-get install nmap
+
+nmap google-dns
+
+PORT    STATE SERVICE
+53/tcp  open  domain
+443/tcp open  https
+
+•Modify the System to Use Google’s Public DNS
+	o Change the nameserver to 8.8.8.8 instead of the default local configuration
+
+nano resolv.conf
+nameserver 8.8.8.8
+
+	o Perform another public IP lookup for cloudflare.com and compare the results.
+
+nslookup cloudflare.com
+Server:         8.8.8.8
+Address:        8.8.8.8#53
+
+Non-authoritative answer:
+Name:   cloudflare.com
+Address: 104.16.133.229
+Name:   cloudflare.com
+Address: 104.16.132.229
+Name:   cloudflare.com
+Address: 2606:4700::6810:84e5
+Name:   cloudflare.com
+Address: 2606:4700::6810:85e5
+
+nslookup cloudflare.com
+Server:         192.168.65.7
+Address:        192.168.65.7#53
+
+Non-authoritative answer:
+Name:   cloudflare.com
+Address: 104.16.132.229
+Name:   cloudflare.com
+Address: 104.16.133.229
+Name:   cloudflare.com
+Address: 2606:4700::6810:84e5
+Name:   cloudflare.com
+Address: 2606:4700::6810:85e5
+
+• Install and verify that Nginx service is running
+
+#apt-get install nginx
+
+# service nginx start
+ * Starting nginx nginx                                                                                                                                                                                                  [ OK ] 
+# service nginx status
+ * nginx is running
+#
+
+• Find the Listening Port for Nginx
+# netstat -tulpn | grep nginx
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      244/nginx: master p 
+tcp6       0      0 :::80                   :::*                    LISTEN      244/nginx: master p
+
+• Change the Nginx Listening port to 8080
+
+cd etc
+cd nginx
+cd sites-enabled
+nano default
+server {
+        listen 8080 default_server;
+        listen [::]:8080 default_server;
+
+# netstat -tulpn | grep nginx
+tcp        0      0 0.0.0.0:8080            0.0.0.0:*               LISTEN      244/nginx: master p 
+tcp6       0      0 :::8080                 :::*                    LISTEN      244/nginx: master p
+
+•Modify the default HTML page title from: "Welcome to nginx!" → "I have completed the Linux part of the DevOps internship project"
+
+cd var
+cd www
+cd html
+nano index.nginx-debian.html
+
+<html>
+<head>
+<title>Welcome to nginx! -> "I Have completed the Linux part of DevOPS internship project"</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
