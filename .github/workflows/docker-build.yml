@@ -34,7 +34,7 @@ jobs:
 
       - name: Build and Push Calculator App Image
         run: |
-          docker build -t luciangabriel140/internship-tremend:calculatorapp-${{ env.COMMIT_HASH }} \
+          docker build --no-cache -t luciangabriel140/internship-tremend:calculatorapp-${{ env.COMMIT_HASH }} \
           -f "part2_calculator_app/Dockerfile" "part2_calculator_app/"
           
           docker push luciangabriel140/internship-tremend:calculatorapp-${{ env.COMMIT_HASH }}"
