@@ -37,7 +37,7 @@ jobs:
           docker build --no-cache -t luciangabriel40/internship-tremend:calculatorapp-${{ env.COMMIT_HASH }} \
           -f "part2_calculator_app/Dockerfile" "part2_calculator_app/"
           
-          docker push luciangabriel140/internship-tremend:calculatorapp-${{ env.COMMIT_HASH }}"
+          docker push luciangabriel40/internship-tremend:calculatorapp-${{ env.COMMIT_HASH }}"
 
 
     
